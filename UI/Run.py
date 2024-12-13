@@ -6,8 +6,7 @@ from Main_widget.MainWindow import Ui_MainWindow
 from Main_widget.data_display import Graph_widget
 from Main_widget.database_display import Database_widget
 from Main_widget.prediction_display import Predict_widget
-import subprocess
-import MadQt
+
 import time as t
 class MainWindow(QMainWindow, Ui_MainWindow):
     """Main window."""
@@ -48,9 +47,9 @@ class MainWindow(QMainWindow, Ui_MainWindow):
         
     def expand(self):
         time = 500
-        #if self.side_bar.size().width() < 200:
-            #self.main_content.setMinimumWidth(self.main_content.width() - 200)
-        
+        if self.side_bar.size().width() < 200:
+            self.side_bar.setMaximumWidth(self.side_bar.width() + 200)
+
         self.home_button.setEnabled(False)
         self.anim_group = QParallelAnimationGroup()
         self.animation = QPropertyAnimation(self.side_bar, b"size")
@@ -99,8 +98,8 @@ class MainWindow(QMainWindow, Ui_MainWindow):
     def set_enabled(self):
         self.home_button.setEnabled(True)
  
-        #if self.side_bar.size().width() < 200:
-            #self.main_content.setMinimumWidth(0)
+        if self.side_bar.size().width() < 200:
+            self.side_bar.setMaximumWidth(self.side_bar.width())
             
        
     def open_database_tab(self):

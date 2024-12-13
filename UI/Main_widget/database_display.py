@@ -2,6 +2,9 @@ import json
 import os
 import csv
 import pandas as pd
+import runpy
+import time
+from nbconvert.preprocessors import ExecutePreprocessor
 from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QFrame, QPushButton, QVBoxLayout, QListWidget
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
@@ -9,7 +12,7 @@ from Main_widget.MongoDB.connect import DB
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'databaseVBQGMc.ui'
+## Form generated from reading UI file 'databasemPLMGK.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -181,8 +184,11 @@ class Ui_database_widget(object):
 
         self.login_message = QLabel(self.top_frame)
         self.login_message.setObjectName(u"login_message")
-        sizePolicy2.setHeightForWidth(self.login_message.sizePolicy().hasHeightForWidth())
-        self.login_message.setSizePolicy(sizePolicy2)
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(0)
+        sizePolicy3.setHeightForWidth(self.login_message.sizePolicy().hasHeightForWidth())
+        self.login_message.setSizePolicy(sizePolicy3)
         self.login_message.setAlignment(Qt.AlignCenter)
 
         self.verticalLayout_3.addWidget(self.login_message)
@@ -192,11 +198,11 @@ class Ui_database_widget(object):
 
         self.bottom_frame = QFrame(self.login_frame)
         self.bottom_frame.setObjectName(u"bottom_frame")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(3)
-        sizePolicy3.setHeightForWidth(self.bottom_frame.sizePolicy().hasHeightForWidth())
-        self.bottom_frame.setSizePolicy(sizePolicy3)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy4.setHorizontalStretch(0)
+        sizePolicy4.setVerticalStretch(3)
+        sizePolicy4.setHeightForWidth(self.bottom_frame.sizePolicy().hasHeightForWidth())
+        self.bottom_frame.setSizePolicy(sizePolicy4)
         self.bottom_frame.setLayoutDirection(Qt.LeftToRight)
         self.bottom_frame.setFrameShape(QFrame.StyledPanel)
         self.bottom_frame.setFrameShadow(QFrame.Raised)
@@ -206,8 +212,8 @@ class Ui_database_widget(object):
         self.verticalLayout_4.setContentsMargins(9, 0, 9, 5)
         self.frame = QFrame(self.bottom_frame)
         self.frame.setObjectName(u"frame")
-        sizePolicy3.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy4)
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.gridLayout_2 = QGridLayout(self.frame)
@@ -221,11 +227,11 @@ class Ui_database_widget(object):
 
         self.username_text = QLineEdit(self.frame)
         self.username_text.setObjectName(u"username_text")
-        sizePolicy4 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.username_text.sizePolicy().hasHeightForWidth())
-        self.username_text.setSizePolicy(sizePolicy4)
+        sizePolicy5 = QSizePolicy(QSizePolicy.MinimumExpanding, QSizePolicy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.username_text.sizePolicy().hasHeightForWidth())
+        self.username_text.setSizePolicy(sizePolicy5)
         self.username_text.setStyleSheet(u"QLineEdit{\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border: 1px solid gray;\n"
@@ -241,8 +247,8 @@ class Ui_database_widget(object):
 
         self.password_text = QLineEdit(self.frame)
         self.password_text.setObjectName(u"password_text")
-        sizePolicy4.setHeightForWidth(self.password_text.sizePolicy().hasHeightForWidth())
-        self.password_text.setSizePolicy(sizePolicy4)
+        sizePolicy5.setHeightForWidth(self.password_text.sizePolicy().hasHeightForWidth())
+        self.password_text.setSizePolicy(sizePolicy5)
         self.password_text.setStyleSheet(u"QLineEdit{\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border: 1px solid gray;\n"
@@ -359,11 +365,8 @@ class Ui_database_widget(object):
 
         self.guest_login_button = QPushButton(self.holder_6)
         self.guest_login_button.setObjectName(u"guest_login_button")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(0)
-        sizePolicy5.setHeightForWidth(self.guest_login_button.sizePolicy().hasHeightForWidth())
-        self.guest_login_button.setSizePolicy(sizePolicy5)
+        sizePolicy3.setHeightForWidth(self.guest_login_button.sizePolicy().hasHeightForWidth())
+        self.guest_login_button.setSizePolicy(sizePolicy3)
         self.guest_login_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.guest_login_button.setStyleSheet(u"QPushButton:checked\n"
 "{\n"
@@ -397,8 +400,8 @@ class Ui_database_widget(object):
 
         self.upload_frame = QFrame(self.left_main_widget)
         self.upload_frame.setObjectName(u"upload_frame")
-        sizePolicy3.setHeightForWidth(self.upload_frame.sizePolicy().hasHeightForWidth())
-        self.upload_frame.setSizePolicy(sizePolicy3)
+        sizePolicy4.setHeightForWidth(self.upload_frame.sizePolicy().hasHeightForWidth())
+        self.upload_frame.setSizePolicy(sizePolicy4)
         self.upload_frame.setStyleSheet(u"QFrame{\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border-radius: 10px;\n"
@@ -657,6 +660,7 @@ class Ui_database_widget(object):
 
 
 
+
 class Database_widget(QWidget):
     def __init__(self, parent=None):
         super(Database_widget, self).__init__(parent)
@@ -678,6 +682,7 @@ class Database_widget(QWidget):
         self.change_buttons_status()
         self.ui.download_button.clicked.connect(self.download_button_function)
         self.ui.upload_button.clicked.connect(self.upload_button_function)
+        self.ui.crawl_button.clicked.connect(self.crawl_button_function)
     def login(self):
         data = {
                 "username": str(self.ui.username_text.text()),
@@ -959,13 +964,25 @@ class Database_widget(QWidget):
              self.db.download_collection()
              self.ui.download_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#00ff00;\">Download successful</span></p></body></html>", None))
         except Exception as e:
-             self.ui.download_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#ff0000;\">{str(e)}</span></p></body></html>", None))
+             print(e)
+             self.ui.download_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#ff0000;\">Something wrong</span></p></body></html>", None))
         self.change_buttons_status()
     def upload_button_function(self):
         try:
              self.db.upload_collection()
              self.ui.upload_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#00ff00;\">Upload successful</span></p></body></html>", None))
         except Exception as e:
-             self.ui.upload_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#ff0000;\">{str(e)}</span></p></body></html>", None))
+             print(e)
+             self.ui.upload_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#ff0000;\">Something wrong</span></p></body></html>", None))
         self.change_buttons_status()
-        
+    def crawl_button_function(self):
+        try:
+             
+             self.ui.crawl_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#ffff00;\">Please wait</span></p></body></html>", None))
+             
+             
+             runpy.run_path(os.path.dirname(os.path.abspath(__file__)) + "\Crawl_data\data_scraping.py")
+             self.ui.crawl_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#00ff00;\">Done</span></p></body></html>", None))
+        except Exception as e:
+             print(e)
+             self.ui.crawl_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#ff0000;\">Something wrong</span></p></body></html>", None))

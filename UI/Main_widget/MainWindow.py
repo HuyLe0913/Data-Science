@@ -417,7 +417,7 @@ class Ui_MainWindow(object):
 
         self.retranslateUi(MainWindow)
         self.pushButton_4.clicked.connect(MainWindow.close)
-        self.pushButton_3.clicked.connect(MainWindow.showMaximized)
+        self.pushButton_3.clicked.connect(lambda : self.show_function(MainWindow))
         self.pushButton_2.clicked.connect(MainWindow.showMinimized)
 
         self.database_button.setDefault(False)
@@ -440,4 +440,8 @@ class Ui_MainWindow(object):
         self.pushButton_3.setText("")
         self.pushButton_4.setText("")
     # retranslateUi
-
+    def show_function(self, MainWindow):
+        if not MainWindow.isMaximized():
+            MainWindow.showMaximized()
+        else:
+            MainWindow.showNormal()

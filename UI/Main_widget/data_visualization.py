@@ -6,6 +6,7 @@ import pandas as pd
 import seaborn as sns
 import plotly.express as px
 import os
+import json
 from io import BytesIO
 # %%
 script_dir = os.path.dirname(os.path.abspath(__file__))
@@ -113,8 +114,12 @@ class Visualization():
             return filename, buf
         plt.close('all')
         return filename
+    
 
 
+        
+
+        
 
     def detect_outliers_by_mean(self, data, column, threshold=3):
         mean = data[column].mean()
@@ -140,6 +145,7 @@ class Visualization():
         return list(data.columns)
     def get_rows(self, column):
         return list(data[column].unique())
+    
 Visualization()
     
 

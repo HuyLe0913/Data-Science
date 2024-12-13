@@ -1,11 +1,16 @@
 from Main_widget.data_visualization import Visualization
 from Main_widget.Predict_engine.infer_life_expectancy import Predict
+from PySide6.QtWidgets import QApplication, QWidget, QFrame, QVBoxLayout, QLabel
+from PySide6.QtGui import QPixmap
+from PySide6.QtCore import Qt
 import json
 import os
+from PySide6.QtWebEngineWidgets import QWebEngineView
+from PySide6.QtCore import QUrl
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'predictGMIBQD.ui'
+## Form generated from reading UI file 'predictVCgVBc.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -115,16 +120,97 @@ class Ui_Form(object):
 "}")
         self.left_frame.setFrameShape(QFrame.StyledPanel)
         self.left_frame.setFrameShadow(QFrame.Raised)
+        self.verticalLayout_2 = QVBoxLayout(self.left_frame)
+        self.verticalLayout_2.setObjectName(u"verticalLayout_2")
+        self.frame_3 = QFrame(self.left_frame)
+        self.frame_3.setObjectName(u"frame_3")
+        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy1.setHorizontalStretch(0)
+        sizePolicy1.setVerticalStretch(1)
+        sizePolicy1.setHeightForWidth(self.frame_3.sizePolicy().hasHeightForWidth())
+        self.frame_3.setSizePolicy(sizePolicy1)
+        self.frame_3.setStyleSheet(u"QFrame{\n"
+"	background-color: rgb(255, 255, 255);\n"
+"	border-radius: 10px;\n"
+"	border:1px solid black;\n"
+"}")
+        self.frame_3.setFrameShape(QFrame.StyledPanel)
+        self.frame_3.setFrameShadow(QFrame.Raised)
+        self.gridLayout_2 = QGridLayout(self.frame_3)
+        self.gridLayout_2.setObjectName(u"gridLayout_2")
+        self.year_combobox = QComboBox(self.frame_3)
+        self.year_combobox.setObjectName(u"year_combobox")
+        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
+        sizePolicy2.setHorizontalStretch(1)
+        sizePolicy2.setVerticalStretch(1)
+        sizePolicy2.setHeightForWidth(self.year_combobox.sizePolicy().hasHeightForWidth())
+        self.year_combobox.setSizePolicy(sizePolicy2)
+        self.year_combobox.setCursor(QCursor(Qt.ArrowCursor))
+        self.year_combobox.setContextMenuPolicy(Qt.PreventContextMenu)
+        self.year_combobox.setStyleSheet(u"QComboBox {\n"
+"		background-color:rgb(255, 255, 255);\n"
+"        border: 1px solid gray; \n"
+"        border-radius: 3px;   \n"
+"        padding: 3px;  \n"
+"    }\n"
+"QComboBox::drop-down {\n"
+"        border-left: 1px solid gray;\n"
+"		image: url(:/icons/images/icons/cil-arrow-bottom-2.png);\n"
+"		width: 25px; \n"
+"    }")
+        self.year_combobox.setFrame(True)
+
+        self.gridLayout_2.addWidget(self.year_combobox, 1, 1, 1, 1)
+
+        self.label_13 = QLabel(self.frame_3)
+        self.label_13.setObjectName(u"label_13")
+        self.label_13.setMinimumSize(QSize(0, 0))
+        self.label_13.setMaximumSize(QSize(100, 16777215))
+        self.label_13.setStyleSheet(u"QFrame{\n"
+"	background-color: rgb(255, 255, 255);\n"
+"	border-radius: 10px;\n"
+"	border:0\n"
+"}")
+        self.label_13.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label_13, 0, 1, 1, 1)
+
+        self.label = QLabel(self.frame_3)
+        self.label.setObjectName(u"label")
+        self.label.setStyleSheet(u"QFrame{\n"
+"	background-color: rgb(255, 255, 255);\n"
+"	border-radius: 10px;\n"
+"	border:0\n"
+"}")
+        self.label.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout_2.addWidget(self.label, 0, 0, 2, 1)
+
+
+        self.verticalLayout_2.addWidget(self.frame_3)
+
+        self.worldmap_display = QFrame(self.left_frame)
+        self.worldmap_display.setObjectName(u"worldmap_display")
+        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy3.setHorizontalStretch(0)
+        sizePolicy3.setVerticalStretch(6)
+        sizePolicy3.setHeightForWidth(self.worldmap_display.sizePolicy().hasHeightForWidth())
+        self.worldmap_display.setSizePolicy(sizePolicy3)
+        self.worldmap_display.setFrameShape(QFrame.StyledPanel)
+        self.worldmap_display.setFrameShadow(QFrame.Raised)
+
+        self.verticalLayout_2.addWidget(self.worldmap_display)
+
 
         self.horizontalLayout.addWidget(self.left_frame)
 
         self.right_frame = QFrame(Form)
         self.right_frame.setObjectName(u"right_frame")
-        sizePolicy1 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy1.setHorizontalStretch(1)
-        sizePolicy1.setVerticalStretch(0)
-        sizePolicy1.setHeightForWidth(self.right_frame.sizePolicy().hasHeightForWidth())
-        self.right_frame.setSizePolicy(sizePolicy1)
+        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy4.setHorizontalStretch(1)
+        sizePolicy4.setVerticalStretch(0)
+        sizePolicy4.setHeightForWidth(self.right_frame.sizePolicy().hasHeightForWidth())
+        self.right_frame.setSizePolicy(sizePolicy4)
         self.right_frame.setStyleSheet(u"QFrame{\n"
 "	background-color: rgb(255, 255, 255);\n"
 "	border-radius: 10px;\n"
@@ -137,11 +223,8 @@ class Ui_Form(object):
         self.verticalLayout.setContentsMargins(7, 7, -1, 7)
         self.frame = QFrame(self.right_frame)
         self.frame.setObjectName(u"frame")
-        sizePolicy2 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy2.setHorizontalStretch(0)
-        sizePolicy2.setVerticalStretch(1)
-        sizePolicy2.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
-        self.frame.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.frame.sizePolicy().hasHeightForWidth())
+        self.frame.setSizePolicy(sizePolicy1)
         self.frame.setFrameShape(QFrame.StyledPanel)
         self.frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_4 = QHBoxLayout(self.frame)
@@ -150,11 +233,11 @@ class Ui_Form(object):
         self.horizontalLayout_4.setContentsMargins(0, 0, 0, 0)
         self.age_predict_button = QPushButton(self.frame)
         self.age_predict_button.setObjectName(u"age_predict_button")
-        sizePolicy3 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy3.setHorizontalStretch(0)
-        sizePolicy3.setVerticalStretch(0)
-        sizePolicy3.setHeightForWidth(self.age_predict_button.sizePolicy().hasHeightForWidth())
-        self.age_predict_button.setSizePolicy(sizePolicy3)
+        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy5.setHorizontalStretch(0)
+        sizePolicy5.setVerticalStretch(0)
+        sizePolicy5.setHeightForWidth(self.age_predict_button.sizePolicy().hasHeightForWidth())
+        self.age_predict_button.setSizePolicy(sizePolicy5)
         self.age_predict_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.age_predict_button.setAutoFillBackground(False)
         self.age_predict_button.setStyleSheet(u"QPushButton:checked\n"
@@ -184,11 +267,11 @@ class Ui_Form(object):
 
         self.population_growth_button = QPushButton(self.frame)
         self.population_growth_button.setObjectName(u"population_growth_button")
-        sizePolicy4 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
-        sizePolicy4.setHorizontalStretch(0)
-        sizePolicy4.setVerticalStretch(0)
-        sizePolicy4.setHeightForWidth(self.population_growth_button.sizePolicy().hasHeightForWidth())
-        self.population_growth_button.setSizePolicy(sizePolicy4)
+        sizePolicy6 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.MinimumExpanding)
+        sizePolicy6.setHorizontalStretch(0)
+        sizePolicy6.setVerticalStretch(0)
+        sizePolicy6.setHeightForWidth(self.population_growth_button.sizePolicy().hasHeightForWidth())
+        self.population_growth_button.setSizePolicy(sizePolicy6)
         self.population_growth_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.population_growth_button.setAutoFillBackground(False)
         self.population_growth_button.setStyleSheet(u"QPushButton:checked\n"
@@ -221,11 +304,11 @@ class Ui_Form(object):
 
         self.input_frame = QFrame(self.right_frame)
         self.input_frame.setObjectName(u"input_frame")
-        sizePolicy5 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy5.setHorizontalStretch(0)
-        sizePolicy5.setVerticalStretch(10)
-        sizePolicy5.setHeightForWidth(self.input_frame.sizePolicy().hasHeightForWidth())
-        self.input_frame.setSizePolicy(sizePolicy5)
+        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy7.setHorizontalStretch(0)
+        sizePolicy7.setVerticalStretch(10)
+        sizePolicy7.setHeightForWidth(self.input_frame.sizePolicy().hasHeightForWidth())
+        self.input_frame.setSizePolicy(sizePolicy7)
         self.input_frame.setFrameShape(QFrame.StyledPanel)
         self.input_frame.setFrameShadow(QFrame.Raised)
         self.gridLayout = QGridLayout(self.input_frame)
@@ -385,11 +468,8 @@ class Ui_Form(object):
 
         self.country_select_combobox = QComboBox(self.input_frame)
         self.country_select_combobox.setObjectName(u"country_select_combobox")
-        sizePolicy6 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Fixed)
-        sizePolicy6.setHorizontalStretch(1)
-        sizePolicy6.setVerticalStretch(1)
-        sizePolicy6.setHeightForWidth(self.country_select_combobox.sizePolicy().hasHeightForWidth())
-        self.country_select_combobox.setSizePolicy(sizePolicy6)
+        sizePolicy2.setHeightForWidth(self.country_select_combobox.sizePolicy().hasHeightForWidth())
+        self.country_select_combobox.setSizePolicy(sizePolicy2)
         self.country_select_combobox.setCursor(QCursor(Qt.ArrowCursor))
         self.country_select_combobox.setContextMenuPolicy(Qt.PreventContextMenu)
         self.country_select_combobox.setStyleSheet(u"QComboBox {\n"
@@ -435,8 +515,8 @@ class Ui_Form(object):
 
         self.predict_button_frame = QFrame(self.right_frame)
         self.predict_button_frame.setObjectName(u"predict_button_frame")
-        sizePolicy2.setHeightForWidth(self.predict_button_frame.sizePolicy().hasHeightForWidth())
-        self.predict_button_frame.setSizePolicy(sizePolicy2)
+        sizePolicy1.setHeightForWidth(self.predict_button_frame.sizePolicy().hasHeightForWidth())
+        self.predict_button_frame.setSizePolicy(sizePolicy1)
         self.predict_button_frame.setFrameShape(QFrame.StyledPanel)
         self.predict_button_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.predict_button_frame)
@@ -445,8 +525,8 @@ class Ui_Form(object):
         self.horizontalLayout_2.setContentsMargins(5, 0, 5, 5)
         self.predict_button = QPushButton(self.predict_button_frame)
         self.predict_button.setObjectName(u"predict_button")
-        sizePolicy3.setHeightForWidth(self.predict_button.sizePolicy().hasHeightForWidth())
-        self.predict_button.setSizePolicy(sizePolicy3)
+        sizePolicy5.setHeightForWidth(self.predict_button.sizePolicy().hasHeightForWidth())
+        self.predict_button.setSizePolicy(sizePolicy5)
         self.predict_button.setCursor(QCursor(Qt.PointingHandCursor))
         self.predict_button.setAutoFillBackground(False)
         self.predict_button.setStyleSheet(u"QPushButton:checked\n"
@@ -478,11 +558,11 @@ class Ui_Form(object):
 
         self.display_output_frame = QFrame(self.right_frame)
         self.display_output_frame.setObjectName(u"display_output_frame")
-        sizePolicy7 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
-        sizePolicy7.setHorizontalStretch(0)
-        sizePolicy7.setVerticalStretch(5)
-        sizePolicy7.setHeightForWidth(self.display_output_frame.sizePolicy().hasHeightForWidth())
-        self.display_output_frame.setSizePolicy(sizePolicy7)
+        sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
+        sizePolicy8.setHorizontalStretch(0)
+        sizePolicy8.setVerticalStretch(5)
+        sizePolicy8.setHeightForWidth(self.display_output_frame.sizePolicy().hasHeightForWidth())
+        self.display_output_frame.setSizePolicy(sizePolicy8)
         palette1 = QPalette()
         brush10 = QBrush(QColor(0, 0, 127, 255))
         brush10.setStyle(Qt.SolidPattern)
@@ -533,6 +613,8 @@ class Ui_Form(object):
 
     def retranslateUi(self, Form):
         Form.setWindowTitle(QCoreApplication.translate("Form", u"Form", None))
+        self.label_13.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Year</span></p></body></html>", None))
+        self.label.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Sample predict</span></p></body></html>", None))
         self.age_predict_button.setText(QCoreApplication.translate("Form", u"Age Prediction", None))
         self.population_growth_button.setText(QCoreApplication.translate("Form", u"Population growth ", None))
         self.label_9.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Young age ratio</span></p></body></html>", None))
@@ -556,6 +638,7 @@ class Ui_Form(object):
 
 
 
+
 class Predict_widget(QWidget):
     def __init__(self, parent=None):
         super(Predict_widget, self).__init__(parent)
@@ -563,15 +646,19 @@ class Predict_widget(QWidget):
         self.ui.setupUi(self)
         #Load all country
         self.data = self.load_graph()
+        
         self.graph_list = self.data.get_graph()
         self.columns = self.data.get_columns()
         self.countries = self.data.get_rows("Country")
         self.ui.country_select_combobox.addItem("None")
         for country in self.countries:
             self.ui.country_select_combobox.addItem(country)
+        self.ui.country_select_combobox.setFixedWidth(130)
         #Set up input line
         self.ui.label_12.setVisible(False)
         self.ui.life_expectancy_line.setVisible(False)
+        self.ui.country_select_combobox.setVisible(False)
+        self.ui.label_2.setVisible(False)
         self.ui.bmi_line.setValidator(QIntValidator())
         self.ui.gdp_line.setValidator(QIntValidator())
         self.ui.area_line.setValidator(QIntValidator())
@@ -586,9 +673,18 @@ class Predict_widget(QWidget):
         self.ui.predict_button.clicked.connect(self.predict)
         self.ui.age_predict_button.clicked.connect(lambda: self.predict_life())
         self.ui.population_growth_button.clicked.connect(lambda: self.predict_growth())
+        # Set up world map
+        self.ui.year_combobox.addItems(self.change_world_map(2016))
+        self.ui.year_combobox.currentIndexChanged.connect(lambda : self.change_world_map(int(self.ui.year_combobox.currentText())))
     def load_graph(self):
         
         return Visualization()
+    def remove_all_widgets(self, layout):
+        for i in range(layout.count()):
+                
+                item = layout.itemAt(i)
+                widget = item.widget()
+                widget.hide()
     def predict(self):
         lines_valid_range = {self.ui.bmi_line : [0, 300], self.ui.gdp_line : [0, 10000000], self.ui.area_line : [1, 1000000000], self.ui.urban_line : [0, 100], self.ui.population_line : [1, 1000000000], self.ui.retirement_line : [0, 100], self.ui.young_ratio_line : [0, 100], self.ui.male_ratio_line : [0, 100], self.ui.mortality_line : [0, 1000], self.ui.life_expectancy_line : [1, 200]}
         for line, range in lines_valid_range.items():
@@ -675,7 +771,7 @@ class Predict_widget(QWidget):
                                         border: 1px solid gray; 
                                         border-radius: 5px;
 		                        background-color:rgb(218, 218, 218);
-	                                font-size:30px;
+	                                font-size:20px;
 	                                color:black;
 	                                font-weight: bold;
                                 }""")
@@ -687,3 +783,24 @@ class Predict_widget(QWidget):
     def predict_growth(self):
         self.ui.label_12.show()
         self.ui.life_expectancy_line.show()
+    def change_world_map(self, year):
+        script_dir = os.path.dirname(os.path.abspath(__file__))
+        folders = os.listdir(script_dir + "\World_map")
+        for save_folder in folders:
+            if int(save_folder) == year:
+                files = os.listdir(script_dir + "\World_map\\" + save_folder)
+                for file in files:
+                    pixmap = QPixmap(script_dir + "\World_map\\" + save_folder + "\\"+ file)
+                    label = QLabel()
+                    label.setPixmap(pixmap)  # Set the pixmap to the label
+                    label.setAlignment(Qt.AlignCenter)  # Center the image in the frame
+                    #label.setGeometry(0, 0, pixmap.width(), pixmap.height())
+                    if self.ui.worldmap_display.layout() is None:
+            
+                        layout = QVBoxLayout(self.ui.worldmap_display)
+                        
+                    else:
+                        layout = self.ui.worldmap_display.layout()
+                    self.remove_all_widgets(layout)
+                    layout.addWidget(label)
+        return folders

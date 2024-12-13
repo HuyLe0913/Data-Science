@@ -43,20 +43,46 @@ class NeuralNet_for_population(nn.Module):
     def forward(self, x):
                     
         return self.MLP(x)
+class NeuralNet_for_population_with_year(nn.Module):
+    def __init__(self):
+        super(NeuralNet_for_population_with_year, self).__init__()
+        
+        self.MLP = nn.Sequential(
+            nn.Linear(19,64), #1 more dimension compared to life expectancy prediction
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(64,128),
+            nn.ReLU(),
+            nn.Dropout(0.2),
+            nn.Linear(128,256),
+            nn.ReLU(),
+            nn.Dropout(0.1),
+            nn.Linear(256,1)
+        )
+
+    def forward(self, x):
+                    
+        return self.MLP(x)
 class Predict():
-    def __init__(self, life_predict = True):
+    def __init__(self, life_predict = True, year = False):
         if life_predict:
             self.model = NeuralNet()
         else:
-            self.model = NeuralNet_for_population()
+            if year:
+                self.model = NeuralNet_for_population_with_year()
+            else:
+                self.model = NeuralNet_for_population()
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
         self.life_predict = life_predict
-
+        self.year = year
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if life_predict:
-            self.model.load_state_dict(torch.load(self.script_dir + "\Life_Expectancy_Predictor_4_64MSE.pth", map_location=torch.device(self.device), weights_only=True))
+        if not year:
+            if life_predict:
+                self.model.load_state_dict(torch.load(self.script_dir + "\Life_Expectancy_Predictor_4_64MSE.pth", map_location=torch.device(self.device), weights_only=True))
+            else:
+                self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.44MSE.pth", map_location=torch.device(self.device), weights_only=True))
         else:
-            self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.44MSE.pth", map_location=torch.device(self.device), weights_only=True))
+            self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.45MSE_with_Year (1).pth", map_location=torch.device(self.device), weights_only=True))
         self.model.eval()
         self.model = self.model.to(self.device)
         
@@ -84,6 +110,8 @@ class Predict():
             'GDP_per_Capita', 'Infant mortality per 1000 live births', 'BMI']
         if not self.life_predict:
             feature_columns.append("Life Expectancy")
+        if self.year:
+            feature_columns.append("Year")
         def one_hot_encode_region(region):
             if not region: #region is none
                 return np.zeros(num_regions)
