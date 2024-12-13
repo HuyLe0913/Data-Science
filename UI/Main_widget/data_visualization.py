@@ -4,9 +4,7 @@ import random
 import warnings
 import pandas as pd
 import seaborn as sns
-import plotly.express as px
 import os
-import json
 from io import BytesIO
 # %%
 script_dir = os.path.dirname(os.path.abspath(__file__))

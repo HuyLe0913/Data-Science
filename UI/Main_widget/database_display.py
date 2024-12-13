@@ -1,11 +1,9 @@
 import json
 import os
 import csv
-import pandas as pd
 import runpy
-import time
-from nbconvert.preprocessors import ExecutePreprocessor
-from PyQt5.QtWidgets import QApplication, QWidget, QLabel, QFrame, QPushButton, QVBoxLayout, QListWidget
+from ping3 import ping
+from PyQt5.QtWidgets import QWidget, QLabel, QFrame, QPushButton, QVBoxLayout, QListWidget
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
 from Main_widget.MongoDB.connect import DB
@@ -678,7 +676,7 @@ class Database_widget(QWidget):
         self.isConnected = False
         
         self.isAdmin = False
-        self.internet = True
+        self.internet = self.is_connected()
         self.change_buttons_status()
         self.ui.download_button.clicked.connect(self.download_button_function)
         self.ui.upload_button.clicked.connect(self.upload_button_function)
@@ -986,3 +984,12 @@ class Database_widget(QWidget):
         except Exception as e:
              print(e)
              self.ui.crawl_message.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600; color:#ff0000;\">Something wrong</span></p></body></html>", None))
+    def is_connected(self):
+        try:
+                # Ping Google's DNS (8.8.8.8)
+                response_time = ping("8.8.8.8", timeout=5)
+                return response_time is not None
+        except Exception:
+                return False
+
+   

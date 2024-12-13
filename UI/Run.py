@@ -1,7 +1,6 @@
 import sys
-from PySide6.QtWidgets import QApplication, QDialog, QMainWindow, QPushButton, QVBoxLayout, QSizePolicy, QHBoxLayout
-from PySide6 import QtWidgets, QtCore
-from PySide6.QtCore import QPropertyAnimation, QPoint, QEasingCurve, QSize, QSequentialAnimationGroup, QParallelAnimationGroup, QRect, Qt
+from PySide6.QtWidgets import QApplication, QMainWindow, QHBoxLayout
+from PySide6.QtCore import QPropertyAnimation, QPoint, QEasingCurve, QSize, QParallelAnimationGroup, Qt
 from Main_widget.MainWindow import Ui_MainWindow
 from Main_widget.data_display import Graph_widget
 from Main_widget.database_display import Database_widget
