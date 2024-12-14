@@ -38,16 +38,27 @@ class NeuralNet_for_population_with_year(nn.Module):
         super(NeuralNet_for_population_with_year, self).__init__()
         
         self.MLP = nn.Sequential(
-            nn.Linear(19,64), #1 more dimension compared to life expectancy prediction
+            nn.Linear(19, 128),  #1 more dimension compare to life expectancy
+            nn.BatchNorm1d(128), 
             nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(64,128),
+            nn.Dropout(0.3), 
+            
+            nn.Linear(128, 256),  
+            nn.BatchNorm1d(256),
             nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(128,256),
+            nn.Dropout(0.3),
+            
+            nn.Linear(256, 512),
+            nn.BatchNorm1d(512),
             nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(256,1)
+            nn.Dropout(0.4),  
+            
+            nn.Linear(512, 256),
+            nn.BatchNorm1d(256),
+            nn.ReLU(),
+            nn.Dropout(0.3),
+            
+            nn.Linear(256, 1)
         )
 
     def forward(self, x):
@@ -68,7 +79,7 @@ class Predict():
                 
         else:
                 self.model = NeuralNet_for_population_with_year()
-                self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.45MSE_with_Year (1).pth", map_location=torch.device(self.device), weights_only=True))
+                self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.39MSE_with_Year_14_12.pth", map_location=torch.device(self.device), weights_only=True))
                 
         self.model.eval()
         self.model = self.model.to(self.device)
@@ -119,10 +130,8 @@ class Predict():
             
         region = input_dict["SDG Region"]
         value_array.extend(one_hot_encode_region(region))
-        if not self.life_predict:
-            input_for_model = torch.tensor(value_array,dtype=torch.float32).to(self.device)
-        else:
-            input_for_model = torch.tensor(value_array, dtype=torch.float32).unsqueeze(0).to(self.device)
+        
+        input_for_model = torch.tensor(value_array, dtype=torch.float32).to(self.device).unsqueeze(0)
         return self.model(input_for_model) #có thể lỗi ở chỗ này do array ko đủ features input
     def create_new_json(self, file_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\MongoDB\Data\cleaned_data.csv"):
         """
