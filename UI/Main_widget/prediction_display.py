@@ -3,14 +3,14 @@ from Main_widget.Predict_engine.infer_life_expectancy import Predict
 from PySide6.QtWidgets import QApplication, QWidget, QFrame, QVBoxLayout, QLabel
 from PySide6.QtGui import QPixmap
 from PySide6.QtCore import Qt
-import json
 import os
+import pandas as pd
 from PySide6.QtWebEngineWidgets import QWebEngineView
 from PySide6.QtCore import QUrl
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'predictVCgVBc.ui'
+## Form generated from reading UI file 'predictylLrRh.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -322,53 +322,19 @@ class Ui_Form(object):
 "}")
         self.retirement_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.retirement_line, 6, 1, 1, 1)
+        self.gridLayout.addWidget(self.retirement_line, 7, 1, 1, 1)
 
-        self.label_9 = QLabel(self.input_frame)
-        self.label_9.setObjectName(u"label_9")
-        self.label_9.setAlignment(Qt.AlignCenter)
+        self.label_11 = QLabel(self.input_frame)
+        self.label_11.setObjectName(u"label_11")
+        self.label_11.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_9, 7, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_11, 10, 0, 1, 1)
 
-        self.label_2 = QLabel(self.input_frame)
-        self.label_2.setObjectName(u"label_2")
-        self.label_2.setAlignment(Qt.AlignCenter)
+        self.label_5 = QLabel(self.input_frame)
+        self.label_5.setObjectName(u"label_5")
+        self.label_5.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
-
-        self.bmi_line = QLineEdit(self.input_frame)
-        self.bmi_line.setObjectName(u"bmi_line")
-        self.bmi_line.setStyleSheet(u"QLineEdit{\n"
-"		background-color:rgb(255, 255, 255);\n"
-"		border: 1px solid gray;  /* Border color */\n"
-"        border-radius: 3px; \n"
-"}")
-        self.bmi_line.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.bmi_line, 1, 1, 1, 1)
-
-        self.label_3 = QLabel(self.input_frame)
-        self.label_3.setObjectName(u"label_3")
-        self.label_3.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_3, 1, 0, 1, 1)
-
-        self.label_10 = QLabel(self.input_frame)
-        self.label_10.setObjectName(u"label_10")
-        self.label_10.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_10, 8, 0, 1, 1)
-
-        self.mortality_line = QLineEdit(self.input_frame)
-        self.mortality_line.setObjectName(u"mortality_line")
-        self.mortality_line.setStyleSheet(u"QLineEdit{\n"
-"		background-color:rgb(255, 255, 255);\n"
-"		border: 1px solid gray;  /* Border color */\n"
-"        border-radius: 3px; \n"
-"}")
-        self.mortality_line.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.mortality_line, 9, 1, 1, 1)
+        self.gridLayout.addWidget(self.label_5, 4, 0, 1, 1)
 
         self.gdp_line = QLineEdit(self.input_frame)
         self.gdp_line.setObjectName(u"gdp_line")
@@ -379,7 +345,24 @@ class Ui_Form(object):
 "}")
         self.gdp_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.gdp_line, 2, 1, 1, 1)
+        self.gridLayout.addWidget(self.gdp_line, 3, 1, 1, 1)
+
+        self.mortality_line = QLineEdit(self.input_frame)
+        self.mortality_line.setObjectName(u"mortality_line")
+        self.mortality_line.setStyleSheet(u"QLineEdit{\n"
+"		background-color:rgb(255, 255, 255);\n"
+"		border: 1px solid gray;  /* Border color */\n"
+"        border-radius: 3px; \n"
+"}")
+        self.mortality_line.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.mortality_line, 10, 1, 1, 1)
+
+        self.label_9 = QLabel(self.input_frame)
+        self.label_9.setObjectName(u"label_9")
+        self.label_9.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_9, 8, 0, 1, 1)
 
         self.young_ratio_line = QLineEdit(self.input_frame)
         self.young_ratio_line.setObjectName(u"young_ratio_line")
@@ -390,13 +373,36 @@ class Ui_Form(object):
 "}")
         self.young_ratio_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.young_ratio_line, 7, 1, 1, 1)
+        self.gridLayout.addWidget(self.young_ratio_line, 8, 1, 1, 1)
 
-        self.label_5 = QLabel(self.input_frame)
-        self.label_5.setObjectName(u"label_5")
-        self.label_5.setAlignment(Qt.AlignCenter)
+        self.label_7 = QLabel(self.input_frame)
+        self.label_7.setObjectName(u"label_7")
+        self.label_7.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_5, 3, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_7, 6, 0, 1, 1)
+
+        self.label_8 = QLabel(self.input_frame)
+        self.label_8.setObjectName(u"label_8")
+        self.label_8.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_8, 7, 0, 1, 1)
+
+        self.label_6 = QLabel(self.input_frame)
+        self.label_6.setObjectName(u"label_6")
+        self.label_6.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_6, 5, 0, 1, 1)
+
+        self.life_expectancy_line = QLineEdit(self.input_frame)
+        self.life_expectancy_line.setObjectName(u"life_expectancy_line")
+        self.life_expectancy_line.setStyleSheet(u"QLineEdit{\n"
+"		background-color:rgb(255, 255, 255);\n"
+"		border: 1px solid gray;  /* Border color */\n"
+"        border-radius: 3px; \n"
+"}")
+        self.life_expectancy_line.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.life_expectancy_line, 11, 1, 1, 1)
 
         self.male_ratio_line = QLineEdit(self.input_frame)
         self.male_ratio_line.setObjectName(u"male_ratio_line")
@@ -407,19 +413,36 @@ class Ui_Form(object):
 "}")
         self.male_ratio_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.male_ratio_line, 8, 1, 1, 1)
+        self.gridLayout.addWidget(self.male_ratio_line, 9, 1, 1, 1)
 
-        self.label_6 = QLabel(self.input_frame)
-        self.label_6.setObjectName(u"label_6")
-        self.label_6.setAlignment(Qt.AlignCenter)
+        self.label_10 = QLabel(self.input_frame)
+        self.label_10.setObjectName(u"label_10")
+        self.label_10.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_6, 4, 0, 1, 1)
+        self.gridLayout.addWidget(self.label_10, 9, 0, 1, 1)
 
-        self.label_7 = QLabel(self.input_frame)
-        self.label_7.setObjectName(u"label_7")
-        self.label_7.setAlignment(Qt.AlignCenter)
+        self.bmi_line = QLineEdit(self.input_frame)
+        self.bmi_line.setObjectName(u"bmi_line")
+        self.bmi_line.setStyleSheet(u"QLineEdit{\n"
+"		background-color:rgb(255, 255, 255);\n"
+"		border: 1px solid gray;  /* Border color */\n"
+"        border-radius: 3px; \n"
+"}")
+        self.bmi_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.label_7, 5, 0, 1, 1)
+        self.gridLayout.addWidget(self.bmi_line, 2, 1, 1, 1)
+
+        self.label_12 = QLabel(self.input_frame)
+        self.label_12.setObjectName(u"label_12")
+        self.label_12.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_12, 11, 0, 1, 1)
+
+        self.label_3 = QLabel(self.input_frame)
+        self.label_3.setObjectName(u"label_3")
+        self.label_3.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_3, 2, 0, 1, 1)
 
         self.urban_line = QLineEdit(self.input_frame)
         self.urban_line.setObjectName(u"urban_line")
@@ -430,30 +453,7 @@ class Ui_Form(object):
 "}")
         self.urban_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.urban_line, 4, 1, 1, 1)
-
-        self.area_line = QLineEdit(self.input_frame)
-        self.area_line.setObjectName(u"area_line")
-        self.area_line.setStyleSheet(u"QLineEdit{\n"
-"		background-color:rgb(255, 255, 255);\n"
-"		border: 1px solid gray;  /* Border color */\n"
-"        border-radius: 3px; \n"
-"}")
-        self.area_line.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.area_line, 3, 1, 1, 1)
-
-        self.label_8 = QLabel(self.input_frame)
-        self.label_8.setObjectName(u"label_8")
-        self.label_8.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_8, 6, 0, 1, 1)
-
-        self.label_4 = QLabel(self.input_frame)
-        self.label_4.setObjectName(u"label_4")
-        self.label_4.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_4, 2, 0, 1, 1)
+        self.gridLayout.addWidget(self.urban_line, 5, 1, 1, 1)
 
         self.population_line = QLineEdit(self.input_frame)
         self.population_line.setObjectName(u"population_line")
@@ -464,7 +464,36 @@ class Ui_Form(object):
 "}")
         self.population_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.population_line, 5, 1, 1, 1)
+        self.gridLayout.addWidget(self.population_line, 6, 1, 1, 1)
+
+        self.label_4 = QLabel(self.input_frame)
+        self.label_4.setObjectName(u"label_4")
+        self.label_4.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_4, 3, 0, 1, 1)
+
+        self.area_line = QLineEdit(self.input_frame)
+        self.area_line.setObjectName(u"area_line")
+        self.area_line.setStyleSheet(u"QLineEdit{\n"
+"		background-color:rgb(255, 255, 255);\n"
+"		border: 1px solid gray;  /* Border color */\n"
+"        border-radius: 3px; \n"
+"}")
+        self.area_line.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.area_line, 4, 1, 1, 1)
+
+        self.label_14 = QLabel(self.input_frame)
+        self.label_14.setObjectName(u"label_14")
+        self.label_14.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_14, 1, 0, 1, 1)
+
+        self.label_2 = QLabel(self.input_frame)
+        self.label_2.setObjectName(u"label_2")
+        self.label_2.setAlignment(Qt.AlignCenter)
+
+        self.gridLayout.addWidget(self.label_2, 0, 0, 1, 1)
 
         self.country_select_combobox = QComboBox(self.input_frame)
         self.country_select_combobox.setObjectName(u"country_select_combobox")
@@ -487,28 +516,16 @@ class Ui_Form(object):
 
         self.gridLayout.addWidget(self.country_select_combobox, 0, 1, 1, 1)
 
-        self.label_11 = QLabel(self.input_frame)
-        self.label_11.setObjectName(u"label_11")
-        self.label_11.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_11, 9, 0, 1, 1)
-
-        self.label_12 = QLabel(self.input_frame)
-        self.label_12.setObjectName(u"label_12")
-        self.label_12.setAlignment(Qt.AlignCenter)
-
-        self.gridLayout.addWidget(self.label_12, 10, 0, 1, 1)
-
-        self.life_expectancy_line = QLineEdit(self.input_frame)
-        self.life_expectancy_line.setObjectName(u"life_expectancy_line")
-        self.life_expectancy_line.setStyleSheet(u"QLineEdit{\n"
+        self.year_line = QLineEdit(self.input_frame)
+        self.year_line.setObjectName(u"year_line")
+        self.year_line.setStyleSheet(u"QLineEdit{\n"
 "		background-color:rgb(255, 255, 255);\n"
 "		border: 1px solid gray;  /* Border color */\n"
 "        border-radius: 3px; \n"
 "}")
-        self.life_expectancy_line.setAlignment(Qt.AlignCenter)
+        self.year_line.setAlignment(Qt.AlignCenter)
 
-        self.gridLayout.addWidget(self.life_expectancy_line, 10, 1, 1, 1)
+        self.gridLayout.addWidget(self.year_line, 1, 1, 1, 1)
 
 
         self.verticalLayout.addWidget(self.input_frame)
@@ -520,7 +537,7 @@ class Ui_Form(object):
         self.predict_button_frame.setFrameShape(QFrame.StyledPanel)
         self.predict_button_frame.setFrameShadow(QFrame.Raised)
         self.horizontalLayout_2 = QHBoxLayout(self.predict_button_frame)
-        self.horizontalLayout_2.setSpacing(0)
+        self.horizontalLayout_2.setSpacing(5)
         self.horizontalLayout_2.setObjectName(u"horizontalLayout_2")
         self.horizontalLayout_2.setContentsMargins(5, 0, 5, 5)
         self.predict_button = QPushButton(self.predict_button_frame)
@@ -543,7 +560,7 @@ class Ui_Form(object):
 "	font-size:12px;\n"
 "	color:white;\n"
 "	font-weight: bold;\n"
-"	border-radius: 3px; \n"
+"	border-radius: 5px; \n"
 "	border:0\n"
 "}")
         self.predict_button.setCheckable(False)
@@ -553,6 +570,36 @@ class Ui_Form(object):
 
         self.horizontalLayout_2.addWidget(self.predict_button)
 
+        self.auto_fill_button = QPushButton(self.predict_button_frame)
+        self.auto_fill_button.setObjectName(u"auto_fill_button")
+        sizePolicy5.setHeightForWidth(self.auto_fill_button.sizePolicy().hasHeightForWidth())
+        self.auto_fill_button.setSizePolicy(sizePolicy5)
+        self.auto_fill_button.setCursor(QCursor(Qt.PointingHandCursor))
+        self.auto_fill_button.setAutoFillBackground(False)
+        self.auto_fill_button.setStyleSheet(u"QPushButton:checked\n"
+"{\n"
+"	background-color:rgb(50, 50, 50);\n"
+"	color:white;\n"
+"}\n"
+"QPushButton:pressed\n"
+"{\n"
+"	background-color:rgb(218, 218, 218)\n"
+"}\n"
+"QPushButton{\n"
+"	background-color:rgb(0, 170, 0);\n"
+"	font-size:12px;\n"
+"	color:white;\n"
+"	font-weight: bold;\n"
+"	border-radius: 5px; \n"
+"	border:0\n"
+"}")
+        self.auto_fill_button.setCheckable(False)
+        self.auto_fill_button.setChecked(False)
+        self.auto_fill_button.setAutoExclusive(False)
+        self.auto_fill_button.setFlat(False)
+
+        self.horizontalLayout_2.addWidget(self.auto_fill_button)
+
 
         self.verticalLayout.addWidget(self.predict_button_frame)
 
@@ -560,7 +607,7 @@ class Ui_Form(object):
         self.display_output_frame.setObjectName(u"display_output_frame")
         sizePolicy8 = QSizePolicy(QSizePolicy.Preferred, QSizePolicy.Preferred)
         sizePolicy8.setHorizontalStretch(0)
-        sizePolicy8.setVerticalStretch(5)
+        sizePolicy8.setVerticalStretch(4)
         sizePolicy8.setHeightForWidth(self.display_output_frame.sizePolicy().hasHeightForWidth())
         self.display_output_frame.setSizePolicy(sizePolicy8)
         palette1 = QPalette()
@@ -617,24 +664,22 @@ class Ui_Form(object):
         self.label.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-size:12pt; font-weight:600;\">Sample predict</span></p></body></html>", None))
         self.age_predict_button.setText(QCoreApplication.translate("Form", u"Age Prediction", None))
         self.population_growth_button.setText(QCoreApplication.translate("Form", u"Population growth ", None))
-        self.label_9.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Young age ratio</span></p></body></html>", None))
-        self.label_2.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Your country</span></p></body></html>", None))
-        self.label_3.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">BMI</span></p></body></html>", None))
-        self.label_10.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Male population ratio</span></p></body></html>", None))
+        self.label_11.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Mortality/1000 live births</span></p></body></html>", None))
         self.label_5.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Total area</span></p></body></html>", None))
-        self.label_6.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Urban population ratio</span></p></body></html>", None))
+        self.label_9.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Young age ratio</span></p></body></html>", None))
         self.label_7.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Population</span></p></body></html>", None))
         self.label_8.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Retirement age ratio</span></p></body></html>", None))
-        self.label_4.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">GDP</span></p></body></html>", None))
-        self.label_11.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Mortality/1000 live births</span></p></body></html>", None))
+        self.label_6.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Urban population ratio</span></p></body></html>", None))
+        self.label_10.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Male population ratio</span></p></body></html>", None))
         self.label_12.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Life expectancy</span></p></body></html>", None))
+        self.label_3.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">BMI</span></p></body></html>", None))
+        self.label_4.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">GDP</span></p></body></html>", None))
+        self.label_14.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Year</span></p></body></html>", None))
+        self.label_2.setText(QCoreApplication.translate("Form", u"<html><head/><body><p><span style=\" font-weight:600;\">Your country</span></p></body></html>", None))
         self.predict_button.setText(QCoreApplication.translate("Form", u"Predict", None))
+        self.auto_fill_button.setText(QCoreApplication.translate("Form", u"Auto Fill", None))
         self.output_label.setText("")
     # retranslateUi
-
-
-
-
 
 
 
@@ -657,22 +702,24 @@ class Predict_widget(QWidget):
         #Set up input line
         self.ui.label_12.setVisible(False)
         self.ui.life_expectancy_line.setVisible(False)
-        self.ui.country_select_combobox.setVisible(False)
-        self.ui.label_2.setVisible(False)
-        self.ui.bmi_line.setValidator(QIntValidator())
-        self.ui.gdp_line.setValidator(QIntValidator())
-        self.ui.area_line.setValidator(QIntValidator())
-        self.ui.urban_line.setValidator(QIntValidator())
+        #self.ui.country_select_combobox.setVisible(False)
+        #self.ui.label_2.setVisible(False)
+        self.ui.year_line.setValidator(QIntValidator())
+        self.ui.bmi_line.setValidator(QDoubleValidator())
+        self.ui.gdp_line.setValidator(QDoubleValidator())
+        self.ui.area_line.setValidator(QDoubleValidator())
+        self.ui.urban_line.setValidator(QDoubleValidator())
         self.ui.population_line.setValidator(QIntValidator())
-        self.ui.retirement_line.setValidator(QIntValidator())
-        self.ui.young_ratio_line.setValidator(QIntValidator())
-        self.ui.male_ratio_line.setValidator(QIntValidator())
-        self.ui.mortality_line.setValidator(QIntValidator())
-        self.ui.life_expectancy_line.setValidator(QIntValidator())
+        self.ui.retirement_line.setValidator(QDoubleValidator())
+        self.ui.young_ratio_line.setValidator(QDoubleValidator())
+        self.ui.male_ratio_line.setValidator(QDoubleValidator())
+        self.ui.mortality_line.setValidator(QDoubleValidator())
+        self.ui.life_expectancy_line.setValidator(QDoubleValidator())
         # Connect button signals
         self.ui.predict_button.clicked.connect(self.predict)
         self.ui.age_predict_button.clicked.connect(lambda: self.predict_life())
         self.ui.population_growth_button.clicked.connect(lambda: self.predict_growth())
+        self.ui.auto_fill_button.clicked.connect(lambda : self.auto_fill())
         # Set up world map
         self.ui.year_combobox.addItems(self.change_world_map(2016))
         self.ui.year_combobox.currentIndexChanged.connect(lambda : self.change_world_map(int(self.ui.year_combobox.currentText())))
@@ -686,7 +733,7 @@ class Predict_widget(QWidget):
                 widget = item.widget()
                 widget.hide()
     def predict(self):
-        lines_valid_range = {self.ui.bmi_line : [0, 300], self.ui.gdp_line : [0, 10000000], self.ui.area_line : [1, 1000000000], self.ui.urban_line : [0, 100], self.ui.population_line : [1, 1000000000], self.ui.retirement_line : [0, 100], self.ui.young_ratio_line : [0, 100], self.ui.male_ratio_line : [0, 100], self.ui.mortality_line : [0, 1000], self.ui.life_expectancy_line : [1, 200]}
+        lines_valid_range = {self.ui.bmi_line : [0, 1000], self.ui.gdp_line : [0, 10000000], self.ui.area_line : [1, 10000000000], self.ui.urban_line : [0, 100], self.ui.population_line : [1, 100000000000], self.ui.retirement_line : [0, 100], self.ui.young_ratio_line : [0, 100], self.ui.male_ratio_line : [0, 100], self.ui.mortality_line : [0, 1000], self.ui.life_expectancy_line : [1, 10000]}
         for line, range in lines_valid_range.items():
             if line.text() == "":
                 line.setStyleSheet("""
@@ -695,7 +742,7 @@ class Predict_widget(QWidget):
                                 border: 1px solid red;  /* Border color */
                                 border-radius: 3px; 
                                 }""")
-            elif int(line.text()) > range[1] or int(line.text()) < range[0]:
+            elif float(line.text()) > range[1] or float(line.text()) < range[0]:
                 line.setStyleSheet("""
                                 QLineEdit{
                                 background-color:rgb(255, 255, 255);
@@ -711,7 +758,7 @@ class Predict_widget(QWidget):
                                 }""")
                 try:
                     symbol = ""
-                    input_dict = {"BMI" : int(self.ui.bmi_line.text()), "GDP_per_Capita" : int(self.ui.gdp_line.text()), "Total Area (sq km)" : int(self.ui.area_line.text()), "Urban Population Ratio" : int(self.ui.urban_line.text()), "Population" : int(self.ui.population_line.text()), "Retirement Age Dependency Ratio" : int(self.ui.retirement_line.text()), "Young Age Dependency Ratio" : int(self.ui.young_ratio_line.text()), "Male Population Ratio" : int(self.ui.male_ratio_line.text()), "Infant mortality per 1000 live births" : int(self.ui.mortality_line.text())}
+                    input_dict = {"BMI" : float(self.ui.bmi_line.text()), "GDP_per_Capita" : float(self.ui.gdp_line.text()), "Total Area (sq km)" : float(self.ui.area_line.text()), "Urban Population Ratio" : float(self.ui.urban_line.text()), "Population" : float(self.ui.population_line.text()), "Retirement Age Dependency Ratio" : float(self.ui.retirement_line.text()), "Young Age Dependency Ratio" : float(self.ui.young_ratio_line.text()), "Male Population Ratio" : float(self.ui.male_ratio_line.text()), "Infant mortality per 1000 live births" : float(self.ui.mortality_line.text()), "Year": int(self.ui.year_line.text())}
                     region_dict = {
                                 'Australia and New Zealand': ['Australia', 'New Zealand'],
                                 'Central and Southern Asia': ['Afghanistan', 'Bangladesh', 'Bhutan', 'India', 'Iran', 'Kazakhstan', 
@@ -753,10 +800,10 @@ class Predict_widget(QWidget):
                     for region, countries_list in region_dict.items():
                         if self.ui.country_select_combobox.currentText() in countries_list:
                             input_dict["SDG Region"] = region
-                    if "SDG Region" not in  region_dict.keys():
+                    if "SDG Region" not in  input_dict.keys():
                         input_dict["SDG Region"] = None
                     if self.ui.population_growth_button.isChecked():
-                        input_dict["Life Expectancy"] = int(self.ui.life_expectancy_line.text())
+                        input_dict["Life Expectancy"] = float(self.ui.life_expectancy_line.text())
                         predict = Predict(life_predict = False)
                         add_text = "Population growth:\n"
                         symbol = "%"
@@ -804,3 +851,53 @@ class Predict_widget(QWidget):
                     self.remove_all_widgets(layout)
                     layout.addWidget(label)
         return folders
+    def auto_fill(self):
+        
+        if self.ui.country_select_combobox.currentText() != None:
+            self.ui.country_select_combobox.setStyleSheet("""QComboBox {
+                        background-color:rgb(255, 255, 255);
+                        border: 1px solid gray; 
+                        border-radius: 3px;   
+                        padding: 3px;  
+                }
+                QComboBox::drop-down {
+                        border-left: 1px solid gray;
+                                image: url(:/icons/images/icons/cil-arrow-bottom-2.png);
+                                width: 25px; 
+                }""")
+             #Find Data
+            file_path =  os.path.dirname(os.path.abspath(__file__)) + "\MongoDB\Data\cleaned_data.csv"  # Replace with your CSV file path
+            df = pd.read_csv(file_path)
+            try:
+                
+                filtered_rows = df[(df['Year'] == int(self.ui.year_line.text())) & (df['Country'] == self.ui.country_select_combobox.currentText())]
+                result_row = filtered_rows.to_dict(orient='records')[0]
+                if not filtered_rows.empty:
+                    line_dict = {"BMI" : self.ui.bmi_line, "GDP_per_Capita" : self.ui.gdp_line, "Total Area (sq km)" : self.ui.area_line, "Urban Population Ratio" : self.ui.urban_line, "Population" : self.ui.population_line, "Retirement Age Dependency Ratio" : self.ui.retirement_line, "Young Age Dependency Ratio" : self.ui.young_ratio_line, "Male Population Ratio" : self.ui.male_ratio_line, "Infant mortality per 1000 live births" : self.ui.mortality_line, "Life Expectancy" : self.ui.life_expectancy_line}
+                    for key, line in line_dict.items():
+                        line.setText(str(result_row[key]))
+            except Exception as e:
+                print(e)
+                self.ui.year_line.setStyleSheet("""QLineEdit {
+                        background-color:rgb(255, 255, 255);
+                        border: 1px solid red; 
+                        border-radius: 3px;   
+                        padding: 3px;  
+                }
+                QComboBox::drop-down {
+                        border-left: 1px solid gray;
+                                image: url(:/icons/images/icons/cil-arrow-bottom-2.png);
+                                width: 25px; 
+                }""")
+        else:
+            self.ui.country_select_combobox.setStyleSheet("""QComboBox {
+                        background-color:rgb(255, 255, 255);
+                        border: 1px solid red; 
+                        border-radius: 3px;   
+                        padding: 3px;  
+                }
+                QComboBox::drop-down {
+                        border-left: 1px solid gray;
+                                image: url(:/icons/images/icons/cil-arrow-bottom-2.png);
+                                width: 25px; 
+                }""")

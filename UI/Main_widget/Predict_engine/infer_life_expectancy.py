@@ -11,38 +11,28 @@ class NeuralNet(nn.Module):
         super(NeuralNet, self).__init__()
         
         self.MLP = nn.Sequential(
-            nn.Linear(17,32),
-            nn.ReLU(),
+            nn.Linear(18, 64),         
+            nn.BatchNorm1d(64),         
+            nn.LeakyReLU(),           
+            nn.Dropout(0.3),            
+            
+            nn.Linear(64, 128),        
+            nn.BatchNorm1d(128),
+            nn.LeakyReLU(),
+            nn.Dropout(0.3),
+            
+            nn.Linear(128, 64),         
+            nn.BatchNorm1d(64),
+            nn.LeakyReLU(),
             nn.Dropout(0.2),
-            nn.Linear(32,48),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(48,1)
+            
+            nn.Linear(64, 1)            
         )
 
     def forward(self, x):
                     
         return self.MLP(x)
-class NeuralNet_for_population(nn.Module):
-    def __init__(self):
-        super(NeuralNet_for_population, self).__init__()
-        
-        self.MLP = nn.Sequential(
-            nn.Linear(18,64), #1 more dimension compared to life expectancy prediction
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(64,128),
-            nn.ReLU(),
-            nn.Dropout(0.2),
-            nn.Linear(128,256),
-            nn.ReLU(),
-            nn.Dropout(0.1),
-            nn.Linear(256,1)
-        )
 
-    def forward(self, x):
-                    
-        return self.MLP(x)
 class NeuralNet_for_population_with_year(nn.Module):
     def __init__(self):
         super(NeuralNet_for_population_with_year, self).__init__()
@@ -64,25 +54,22 @@ class NeuralNet_for_population_with_year(nn.Module):
                     
         return self.MLP(x)
 class Predict():
-    def __init__(self, life_predict = True, year = False):
-        if life_predict:
-            self.model = NeuralNet()
-        else:
-            if year:
-                self.model = NeuralNet_for_population_with_year()
-            else:
-                self.model = NeuralNet_for_population()
+    def __init__(self, life_predict = True):
+
         self.script_dir = os.path.dirname(os.path.abspath(__file__))
         self.life_predict = life_predict
-        self.year = year
+        
         self.device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
-        if not year:
-            if life_predict:
-                self.model.load_state_dict(torch.load(self.script_dir + "\Life_Expectancy_Predictor_4_64MSE.pth", map_location=torch.device(self.device), weights_only=True))
-            else:
-                self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.44MSE.pth", map_location=torch.device(self.device), weights_only=True))
+        
+
+        if life_predict:
+                self.model = NeuralNet()
+                self.model.load_state_dict(torch.load(self.script_dir + "\Life_Expectancy_Predictor_4_31MSE_with_Year.pth", map_location=torch.device(self.device), weights_only=True))
+                
         else:
-            self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.45MSE_with_Year (1).pth", map_location=torch.device(self.device), weights_only=True))
+                self.model = NeuralNet_for_population_with_year()
+                self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.45MSE_with_Year (1).pth", map_location=torch.device(self.device), weights_only=True))
+                
         self.model.eval()
         self.model = self.model.to(self.device)
         
@@ -105,13 +92,13 @@ class Predict():
         }
         num_regions = len(sgd_region_map)
         feature_columns = [
-            'Young Age Dependency Ratio', 'Retirement Age Dependency Ratio', 'Population',
+            'Year', 'Young Age Dependency Ratio', 'Retirement Age Dependency Ratio', 'Population',
             'Male Population Ratio', 'Urban Population Ratio', 'Total Area (sq km)',
             'GDP_per_Capita', 'Infant mortality per 1000 live births', 'BMI']
         if not self.life_predict:
             feature_columns.append("Life Expectancy")
-        if self.year:
-            feature_columns.append("Year")
+            
+
         def one_hot_encode_region(region):
             if not region: #region is none
                 return np.zeros(num_regions)
@@ -132,8 +119,10 @@ class Predict():
             
         region = input_dict["SDG Region"]
         value_array.extend(one_hot_encode_region(region))
-        input_for_model = torch.tensor(value_array,dtype=torch.float32).to(self.device)
-
+        if not self.life_predict:
+            input_for_model = torch.tensor(value_array,dtype=torch.float32).to(self.device)
+        else:
+            input_for_model = torch.tensor(value_array, dtype=torch.float32).unsqueeze(0).to(self.device)
         return self.model(input_for_model) #có thể lỗi ở chỗ này do array ko đủ features input
     def create_new_json(self, file_path = os.path.dirname(os.path.dirname(os.path.abspath(__file__))) + "\MongoDB\Data\cleaned_data.csv"):
         """

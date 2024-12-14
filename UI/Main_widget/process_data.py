@@ -32,13 +32,13 @@ for _, row in processed_data.iterrows():
             "Life Expectancy": row["Life Expectancy"],
 
         }
-        pre = Predict(life_predict = False, year = True)
+        pre = Predict(life_predict = True)
         ans = pre.predict(input_dict)
         ouput_dict = {"Country" : country, "Year": year, "Predict" : round(ans.item(), 2)}
 
         ouput_dict_list.append(ouput_dict)
 df = pd.DataFrame(ouput_dict_list)
 # Save the DataFrame to a CSV file
-df.to_csv(os.path.dirname(os.path.abspath(__file__)) + "\Predict_engine\\population_growth_predict.csv", index=False)
+df.to_csv(os.path.dirname(os.path.abspath(__file__)) + "\Predict_engine\\life_expectancy_predict.csv", index=False)
 # Display a sample of the generated input dictionaries
 

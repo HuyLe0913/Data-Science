@@ -4,7 +4,7 @@ import plotly.express as px
 import matplotlib.pyplot as plt
 import plotly.io as pio
 
-data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + "\Predict_engine\population_growth_predict.csv")
+data = pd.read_csv(os.path.dirname(os.path.abspath(__file__)) + "\Predict_engine\life_expectancy_predict.csv")
 # Unique years in the dataset
 unique_years = data['Year'].unique()
 
@@ -22,9 +22,9 @@ for year in unique_years:
         locations="Country",
         locationmode="country names",
         color="Predict",
-        title=f"Population growth ({year})",
+        title=f"Life Expectancy ({year})",
         color_continuous_scale="Plasma",
-        labels={"Predict": "Population Growth(%)"}
+        labels={"Predict": "Life Expectancy"}
     )
     fig.update_layout(
         coloraxis_colorbar=dict(
@@ -41,8 +41,8 @@ for year in unique_years:
     os.makedirs(year_folder, exist_ok=True)
     
     # Save the figure
-    output_path = os.path.join(year_folder, f"PopulationGrowth_{year}.png")
-    pio.write_image(fig, output_path, format='png', width=800, height=550)
+    output_path = os.path.join(year_folder, f"LifeExpectancy_{year}.png")
+    pio.write_image(fig, output_path, format='png', width=700, height=550)
 
 
 output_base_path
