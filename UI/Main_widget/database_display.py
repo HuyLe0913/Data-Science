@@ -3,14 +3,14 @@ import os
 import csv
 import runpy
 from ping3 import ping
-from PyQt5.QtWidgets import QWidget, QLabel, QFrame, QPushButton, QVBoxLayout, QListWidget
+from PyQt5.QtWidgets import QWidget, QLabel, QFrame, QPushButton, QVBoxLayout, QListWidget, QLineEdit
 from PySide6.QtGui import QIcon
 from PySide6.QtCore import Qt
 from Main_widget.MongoDB.connect import DB
 # -*- coding: utf-8 -*-
 
 ################################################################################
-## Form generated from reading UI file 'databasemPLMGK.ui'
+## Form generated from reading UI file 'databaseualVMn.ui'
 ##
 ## Created by: Qt User Interface Compiler version 5.15.2
 ##
@@ -473,16 +473,16 @@ class Ui_database_widget(object):
 
         self.verticalLayout_7.addWidget(self.status_label)
 
-        self.premisson_label = QLabel(self.upload_frame_2)
-        self.premisson_label.setObjectName(u"premisson_label")
-        sizePolicy2.setHeightForWidth(self.premisson_label.sizePolicy().hasHeightForWidth())
-        self.premisson_label.setSizePolicy(sizePolicy2)
-        self.premisson_label.setStyleSheet(u"QLabel{\n"
+        self.permission_label = QLabel(self.upload_frame_2)
+        self.permission_label.setObjectName(u"permission_label")
+        sizePolicy2.setHeightForWidth(self.permission_label.sizePolicy().hasHeightForWidth())
+        self.permission_label.setSizePolicy(sizePolicy2)
+        self.permission_label.setStyleSheet(u"QLabel{\n"
 "	border:0;\n"
 "}")
-        self.premisson_label.setAlignment(Qt.AlignCenter)
+        self.permission_label.setAlignment(Qt.AlignCenter)
 
-        self.verticalLayout_7.addWidget(self.premisson_label)
+        self.verticalLayout_7.addWidget(self.permission_label)
 
 
         self.verticalLayout_6.addWidget(self.upload_frame_2)
@@ -564,7 +564,7 @@ class Ui_database_widget(object):
         self.crawl_frame.setFrameShadow(QFrame.Raised)
         self.verticalLayout_9 = QVBoxLayout(self.crawl_frame)
         self.verticalLayout_9.setObjectName(u"verticalLayout_9")
-        self.verticalLayout_9.setContentsMargins(40, 30, 40, 32)
+        self.verticalLayout_9.setContentsMargins(40, 21, 40, 11)
         self.crawl_message = QLabel(self.crawl_frame)
         self.crawl_message.setObjectName(u"crawl_message")
         self.crawl_message.setStyleSheet(u"QLabel{\n"
@@ -615,6 +615,14 @@ class Ui_database_widget(object):
 
         self.verticalLayout_9.addWidget(self.internet_status_label)
 
+        self.permission_label_2 = QLabel(self.crawl_frame)
+        self.permission_label_2.setObjectName(u"permission_label_2")
+        self.permission_label_2.setStyleSheet(u"QLabel{\n"
+"	border:0;\n"
+"}")
+
+        self.verticalLayout_9.addWidget(self.permission_label_2)
+
 
         self.verticalLayout_6.addWidget(self.crawl_frame)
 
@@ -642,16 +650,15 @@ class Ui_database_widget(object):
         self.upload_message.setText("")
         self.upload_button.setText(QCoreApplication.translate("database_widget", u"Upload", None))
         self.status_label.setText(QCoreApplication.translate("database_widget", u"<html><head/><body><p><span style=\" font-weight:600;\">Status: </span><span style=\" color:#00ff00;\">Connected</span></p></body></html>", None))
-        self.premisson_label.setText(QCoreApplication.translate("database_widget", u"<html><head/><body><p><span style=\" font-weight:600;\">Permisson</span>: <span style=\" color:#00ff00;\">Admin</span></p></body></html>", None))
+        self.permission_label.setText(QCoreApplication.translate("database_widget", u"<html><head/><body><p><span style=\" font-weight:600;\">Permisson</span>: <span style=\" color:#00ff00;\">Admin</span></p></body></html>", None))
         self.download_message.setText("")
         self.download_button.setText(QCoreApplication.translate("database_widget", u"Download", None))
         self.status_label_2.setText(QCoreApplication.translate("database_widget", u"<html><head/><body><p><span style=\" font-weight:600;\">Status: </span><span style=\" color:#00ff00;\">Connected</span></p></body></html>", None))
         self.crawl_message.setText("")
         self.crawl_button.setText(QCoreApplication.translate("database_widget", u"Crawl", None))
         self.internet_status_label.setText(QCoreApplication.translate("database_widget", u"<html><head/><body><p><span style=\" font-weight:600;\">Internet: </span><span style=\" color:#00ff00;\">Connected</span></p></body></html>", None))
+        self.permission_label_2.setText(QCoreApplication.translate("database_widget", u"<html><head/><body><p><span style=\" font-weight:600;\">Permisson</span>: <span style=\" color:#00ff00;\">Admin</span></p></body></html>", None))
     # retranslateUi
-
-
 
 
 
@@ -681,6 +688,9 @@ class Database_widget(QWidget):
         self.ui.download_button.clicked.connect(self.download_button_function)
         self.ui.upload_button.clicked.connect(self.upload_button_function)
         self.ui.crawl_button.clicked.connect(self.crawl_button_function)
+        # Hide password
+        self.ui.password_text.setEchoMode(QLineEdit.Password)
+
     def login(self):
         data = {
                 "username": str(self.ui.username_text.text()),
@@ -929,30 +939,32 @@ class Database_widget(QWidget):
                 self.ui.status_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Status: </span><span style=\" color:#00ff00;\">Connected</span></p></body></html>", None))
                 self.ui.status_label_2.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Status: </span><span style=\" color:#00ff00;\">Connected</span></p></body></html>", None))
                 if self.isAdmin:
-                     self.ui.premisson_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#00ff00;\">Admin</span></p></body></html>", None))
-                     
+                     self.ui.permission_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#00ff00;\">Admin</span></p></body></html>", None))
+                     self.ui.permission_label_2.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#00ff00;\">Admin</span></p></body></html>", None))
                      
                      self.set_valid(self.ui.upload_button, True)
                      self.set_valid(self.ui.download_button, True)
                      self.set_valid(self.ui.crawl_button, True)
                 else:
-                     self.ui.premisson_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
-                
+                     self.ui.permission_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
+                     self.ui.permission_label_2.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
                      self.set_valid(self.ui.upload_button, False)
                      self.set_valid(self.ui.download_button, True)
-                     self.set_valid(self.ui.crawl_button, True)
+                     self.set_valid(self.ui.crawl_button, False)
             else:
                 self.ui.status_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Status: </span><span style=\" color:#ff0000;\">Disconnected</span></p></body></html>", None))
                 self.ui.status_label_2.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Status: </span><span style=\" color:#ff0000;\">Disconnected</span></p></body></html>", None))
-                self.ui.premisson_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
+                self.ui.permission_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
+                self.ui.permission_label_2.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
                 self.set_valid(self.ui.upload_button, False)
                 self.set_valid(self.ui.download_button, False)
-                self.set_valid(self.ui.crawl_button, True)
+                self.set_valid(self.ui.crawl_button, False)
         else:
             self.ui.internet_status_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Internet: </span><span style=\" color:#ff0000;\">Disconnected</span></p></body></html>", None))
             self.ui.status_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Status: </span><span style=\" color:#ff0000;\">Disconnected</span></p></body></html>", None))
             self.ui.status_label_2.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Status: </span><span style=\" color:#ff0000;\">Disconnected</span></p></body></html>", None))
-            self.ui.premisson_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
+            self.ui.permission_label.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
+            self.ui.permission_label_2.setText(QCoreApplication.translate("database_widget", f"<html><head/><body><p align=\"center\"><span style=\" font-size:8pt; font-weight:600;\">Permisson: </span><span style=\" color:#ff0000;\">Not Admin</span></p></body></html>", None))
             self.set_valid(self.ui.upload_button, False)
             self.set_valid(self.ui.download_button, False)
             self.set_valid(self.ui.crawl_button, False)
