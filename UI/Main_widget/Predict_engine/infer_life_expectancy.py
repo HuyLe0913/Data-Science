@@ -9,25 +9,26 @@ import pandas as pd
 class NeuralNet(nn.Module):
     def __init__(self):
         super(NeuralNet, self).__init__()
-        
+
         self.MLP = nn.Sequential(
-            nn.Linear(18, 64),         
-            nn.BatchNorm1d(64),         
-            nn.LeakyReLU(),           
-            nn.Dropout(0.3),            
-            
-            nn.Linear(64, 128),        
-            nn.BatchNorm1d(128),
-            nn.LeakyReLU(),
-            nn.Dropout(0.3),
-            
-            nn.Linear(128, 64),         
-            nn.BatchNorm1d(64),
-            nn.LeakyReLU(),
-            nn.Dropout(0.2),
-            
-            nn.Linear(64, 1)            
+            nn.Linear(18, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            #nn.Dropout(0.5),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            #nn.Dropout(0.5),
+
+            nn.Linear(512, 512),
+            nn.BatchNorm1d(512),
+            nn.ReLU(),
+            #nn.Dropout(0.5),
+
+            nn.Linear(512, 1)
         )
+
 
     def forward(self, x):
                     
@@ -75,7 +76,7 @@ class Predict():
 
         if life_predict:
                 self.model = NeuralNet()
-                self.model.load_state_dict(torch.load(self.script_dir + "\Life_Expectancy_Predictor_4_31MSE_with_Year.pth", map_location=torch.device(self.device), weights_only=True))
+                self.model.load_state_dict(torch.load(self.script_dir + "\Life_Expectancy_Predictor_1.563MSE_with_Year.pth", map_location=torch.device(self.device), weights_only=True))
                 
         else:
                 self.model = NeuralNet_for_population_with_year()
