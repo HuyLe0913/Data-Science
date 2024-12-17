@@ -39,28 +39,24 @@ class NeuralNet_for_population_with_year(nn.Module):
         super(NeuralNet_for_population_with_year, self).__init__()
         
         self.MLP = nn.Sequential(
-            nn.Linear(19, 128),  #1 more dimension compare to life expectancy
-            nn.BatchNorm1d(128), 
-            nn.ReLU(),
-            nn.Dropout(0.3), 
+            nn.Linear(19, 256),         
+            #nn.BatchNorm1d(128),         
+            nn.ReLU(),           
+            #nn.Dropout(0.5),            
             
-            nn.Linear(128, 256),  
-            nn.BatchNorm1d(256),
+            nn.Linear(256, 256),        
+            #nn.BatchNorm1d(256),
             nn.ReLU(),
-            nn.Dropout(0.3),
+            #nn.Dropout(0.5),
             
-            nn.Linear(256, 512),
-            nn.BatchNorm1d(512),
+            nn.Linear(256, 256),         
+            #nn.BatchNorm1d(128),
             nn.ReLU(),
-            nn.Dropout(0.4),  
+            #nn.Dropout(0.5),
             
-            nn.Linear(512, 256),
-            nn.BatchNorm1d(256),
-            nn.ReLU(),
-            nn.Dropout(0.3),
-            
-            nn.Linear(256, 1)
+            nn.Linear(256, 1)            
         )
+
 
     def forward(self, x):
                     
@@ -80,7 +76,7 @@ class Predict():
                 
         else:
                 self.model = NeuralNet_for_population_with_year()
-                self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_1.39MSE_with_Year_14_12.pth", map_location=torch.device(self.device), weights_only=True))
+                self.model.load_state_dict(torch.load(self.script_dir + "\population_growth%_0.504MSE_with_Year_14_12.pth", map_location=torch.device(self.device), weights_only=True))
                 
         self.model.eval()
         self.model = self.model.to(self.device)
