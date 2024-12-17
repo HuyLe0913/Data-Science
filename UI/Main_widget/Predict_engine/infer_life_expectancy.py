@@ -152,6 +152,11 @@ class Predict():
         """
         try:
             data = pd.read_csv(file_path)
+            data = data.sort_values(by=['Country', 'Year'])
+            data['Population Growth (%)'] = data.groupby('Country')['Population'].pct_change() * 100
+            data['Population Growth (%)'] = data.groupby('Country')['Population Growth (%)'].shift(-1)
+            data = data.dropna(subset=['Population Growth (%)'])  
+            data = data.drop(columns=['Population Growth (%)'], errors='ignore')  
             result = {}
             log10_cloumns = ['Population', 'Total Area (sq km)', 'GDP_per_Capita', 'Infant mortality per 1000 live births']
             for column in data.columns:
@@ -177,6 +182,7 @@ class Predict():
                     max_value = data[column].max()
                     min_value = data[column].min()
                     result[column] = (mean_value, max_value, min_value)
+            
             script_dir = os.path.dirname(os.path.abspath(__file__))
             output_file = "\mean_max_min_dictionary.json"
             with open(script_dir + output_file, "w") as json_file:
