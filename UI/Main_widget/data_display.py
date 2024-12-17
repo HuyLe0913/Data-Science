@@ -1142,6 +1142,7 @@ class Graph_widget(QWidget):
         #Load all graph
         self.data = self.load_graph()
         self.graph_list = self.data.get_graph()
+        
         self.columns = self.data.get_columns()
         self.countries = self.data.get_rows("Country")
         # Create an instance of the generated UI class

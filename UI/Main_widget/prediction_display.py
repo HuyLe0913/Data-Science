@@ -691,7 +691,8 @@ class Predict_widget(QWidget):
         self.ui.setupUi(self)
         #Load all country
         self.data = self.load_graph()
-        
+        predict = Predict(life_predict = False)
+        predict.create_new_json()
         self.graph_list = self.data.get_graph()
         self.columns = self.data.get_columns()
         self.countries = self.data.get_rows("Country")
