@@ -5,6 +5,7 @@ import torch.nn as nn
 import os
 import json
 import pandas as pd
+import math
 
 class NeuralNet(nn.Module):
     def __init__(self):
@@ -103,6 +104,7 @@ class Predict():
             'Year', 'Young Age Dependency Ratio', 'Retirement Age Dependency Ratio', 'Population',
             'Male Population Ratio', 'Urban Population Ratio', 'Total Area (sq km)',
             'GDP_per_Capita', 'Infant mortality per 1000 live births', 'BMI']
+        log10_cloumns = ['Population', 'Total Area (sq km)', 'GDP_per_Capita', 'Infant mortality per 1000 live births']
         if not self.life_predict:
             feature_columns.append("Life Expectancy")
             
@@ -116,15 +118,22 @@ class Predict():
             return one_hot_vector
         value_array = []
         for feature_column in feature_columns:
+            
             if input_dict[feature_column] is None:
                 input_dict[feature_column] = 0
                 value_array.append(input_dict[feature_column])
-            else: 
-                mean_value,max_value,min_value = mean_max_min_dict[feature_column]
-                old_value = input_dict[feature_column]
-                input_dict[feature_column] = (old_value - mean_value) / (max_value - min_value)
-                value_array.append(input_dict[feature_column])
-            
+            else:
+                if feature_column not in log10_cloumns:
+                    mean_value,max_value,min_value = mean_max_min_dict[feature_column]
+                    old_value = input_dict[feature_column]
+                    input_dict[feature_column] = (old_value - mean_value) / (max_value - min_value)
+                    value_array.append(input_dict[feature_column])
+                else:
+                    mean_value,max_value,min_value = mean_max_min_dict[feature_column]
+                    old_value = np.log10(input_dict[feature_column])
+                    input_dict[feature_column] = (old_value - mean_value) / (max_value - min_value)
+                    value_array.append(input_dict[feature_column])
+
         region = input_dict["SDG Region"]
         value_array.extend(one_hot_encode_region(region))
         
@@ -144,7 +153,7 @@ class Predict():
         try:
             data = pd.read_csv(file_path)
             result = {}
-
+            log10_cloumns = ['Population', 'Total Area (sq km)', 'GDP_per_Capita', 'Infant mortality per 1000 live births']
             for column in data.columns:
                 if pd.api.types.is_numeric_dtype(data[column]):
                     if data[column].isnull().any():
@@ -162,7 +171,8 @@ class Predict():
                                     max = value
                         result[column] = (round(sum/n,2),max,min)
                         continue
-
+                    if column in log10_cloumns:
+                        data[column] = np.log10(data[column])
                     mean_value = data[column].mean()
                     max_value = data[column].max()
                     min_value = data[column].min()

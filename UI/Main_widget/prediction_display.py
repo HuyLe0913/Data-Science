@@ -805,6 +805,7 @@ class Predict_widget(QWidget):
                     if self.ui.population_growth_button.isChecked():
                         input_dict["Life Expectancy"] = float(self.ui.life_expectancy_line.text())
                         predict = Predict(life_predict = False)
+                        #predict.create_new_json()
                         add_text = "Population growth:\n"
                         symbol = "%"
                     else:
